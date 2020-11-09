@@ -1,0 +1,35 @@
+name: movies
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dio: ^3.0.10
+  dartz: ^0.9.2
+  intl: ^0.16.1
+  custom_splash: ^0.0.2
+  fancy_shimmer_image: ^1.2.0
+  infinite_scroll_pagination: ^2.2.2
+  ext_video_player: ^0.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: ^0.8.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - 'assets/icon/'
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.png"
