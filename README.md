@@ -16,6 +16,7 @@
    <img src="https://res.cloudinary.com/edsan/image/upload/v1604884050/movies-app/movie-detail-2_deswif.png" alt="Movie detail page" width="200" />
 
 </p>
+
 ## Desafio para aula
 
 * [x] Adicionar um ícone e uma tela de splash para o aplicativo;
