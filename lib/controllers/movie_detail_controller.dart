@@ -24,7 +24,7 @@ class MovieDetailController {
   bool loading = true;
 
   Future<Either<MovieError, MovieDetailModel>> fetchMovieById(int id) async {
-    movieError = null;
+
     final result = await _repository.fetchMovieById(id);
     result.fold(
       (error) => movieError = error,
@@ -34,7 +34,6 @@ class MovieDetailController {
   }
 
   Future<Either<MovieError, MovieVideoResponse>> fetchMovieVideo(int id) async {
-    movieError = null;
     final result = await _repository.fetchMovieVideos(id);
     result.fold(
       (l) => movieError = l,

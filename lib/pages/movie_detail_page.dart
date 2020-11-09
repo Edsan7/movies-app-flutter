@@ -27,6 +27,16 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     _initialize();
   }
 
+  @override
+  void deactivate() {
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   _initialize() async {
     setState(() {
       _controller.loading = true;
@@ -98,7 +108,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     }
     final height = MediaQuery.of(context).size.height * 0.35;
     return Container(
-      margin: EdgeInsets.fromLTRB(10, 5, 10, 20),
+      margin: const EdgeInsets.fromLTRB(10, 5, 10, 20),
       height: height,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -111,12 +121,26 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   Widget _similarMovieCard(BuildContext context, int index) {
     final posterPath = _controller.similarMovies[index].posterPath;
     final width = MediaQuery.of(context).size.width * 0.45;
-    return Container(
-      margin: EdgeInsets.only(right: 10),
-      width: width,
-      child: FancyShimmerImage(
-        imageUrl: 'https://image.tmdb.org/t/p/w220_and_h330_face$posterPath',
-        boxFit: BoxFit.fill,
+    final movieId = _controller.similarMovies[index].id;
+    return GestureDetector(
+      onTap: () => _onTap(movieId),
+      child: Container(
+        margin: const EdgeInsets.only(right: 10),
+        width: width,
+        child: FancyShimmerImage(
+          imageUrl: 'https://image.tmdb.org/t/p/w220_and_h330_face$posterPath',
+          boxFit: BoxFit.fill,
+          errorWidget: CenteredMessage(message: kImageError),
+        ),
+      ),
+    );
+  }
+
+  _onTap(int movieId) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MovieDetailPage(movieId),
       ),
     );
   }
@@ -148,7 +172,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Rate(value: _controller.movieDetail.voteAverage),
-          SizedBox(width: 20.0),
+          const SizedBox(width: 20.0),
           ChipDate(date: _controller.movieDetail.releaseDate)
         ],
       ),
@@ -159,7 +183,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     return FancyShimmerImage(
       imageUrl:
           'https://image.tmdb.org/t/p/w500${_controller.movieDetail.backdropPath}',
-      errorWidget: CenteredMessage(message: kImageError),
+      errorWidget: const CenteredMessage(message: kImageError),
       boxFit: BoxFit.cover,
     );
   }
